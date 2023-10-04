@@ -6,13 +6,27 @@ import Head from "next/head";
 import data from "../../data/seed.json";
 import styles from "../styles/Simplepedia.module.css";
 
+import { useRouter } from "next/router";
+
 function MainApp({ Component, pageProps }) {
   const [collection, setCollection] = useState(data);
+  const [currentArticle, setCurrentArticle2] = useState();
+
+  const router = useRouter();
+  const { id } = router.query;
+
+  function setCurrentArticle(object) {
+    const articleName = "/articles/" + object.id;
+    router.push(articleName);
+    setCurrentArticle2(object);
+  }
 
   const props = {
     ...pageProps,
     collection,
     setCollection,
+    setCurrentArticle,
+    currentArticle,
   };
 
   return (
