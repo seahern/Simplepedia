@@ -46,6 +46,6 @@ export default function TitlesView({ articles, setCurrentArticle }) {
 }
 
 TitlesView.propTypes = {
-  articles: ArticleShape,
+  articles: PropTypes.arrayOf(ArticleShape),
   setCurrentArticle: PropTypes.func,
 };

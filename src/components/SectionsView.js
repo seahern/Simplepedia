@@ -16,7 +16,7 @@ export default function SectionsView({ sections, setCurrentSection }) {
 
   const sections1 = sortedSections.map((object) => (
     <li
-      key={object.id}
+      key={object.charAt(0)}
       data-testid="section"
       onClick={() => {
         setCurrentSection(object);

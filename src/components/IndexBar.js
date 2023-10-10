@@ -36,14 +36,16 @@ export default function IndexBar({
   });
 
   function setCurrentSectionCaller(object) {
-    setCurrentArticle(" ");
+    setCurrentArticle(undefined);
     setCurrentSection(object);
   }
 
   const setCurrentSectionCaller2 = setCurrentSectionCaller;
 
   useEffect(() => {
-    setCurrentSection(currentArticle);
+    if (currentArticle) {
+      setCurrentSection(currentArticle.title.charAt(0));
+    }
   }, [currentArticle]);
 
   return (
@@ -51,7 +53,6 @@ export default function IndexBar({
       <SectionsView
         sections={sections2}
         setCurrentSection={setCurrentSectionCaller2}
-        setCurrentArticle={setCurrentArticle}
       />
       <TitlesView
         articles={filteredArticles}

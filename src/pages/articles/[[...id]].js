@@ -39,10 +39,11 @@ export default function Simplepedia({
       <IndexBar
         collection={collection}
         setCurrentArticle={setCurrentArticle3}
+        currentArticle={currentArticle}
       />
 
-      {!currentArticle ? null : <Article currentArticle={currentArticle} />}
-      {currentArticle ? null : <p>Please select a section </p>}
+      {currentArticle && <Article currentArticle={currentArticle} />}
+
       <ButtonBar
         handleClick={handleClick}
         allowEdit={currentArticle !== undefined || null}

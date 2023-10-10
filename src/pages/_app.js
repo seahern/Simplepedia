@@ -19,9 +19,11 @@ function MainApp({ Component, pageProps }) {
     if (arguments.length === 0) {
       router.back();
     } else {
-      const articleName = "/articles/" + object.id;
-      router.push(articleName);
-      setCurrentArticle2(object);
+      if (object !== undefined) {
+        const articleName = "/articles/" + object.id;
+        router.push(articleName);
+        setCurrentArticle2(object);
+      }
     }
   }
 

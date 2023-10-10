@@ -6,7 +6,6 @@
   props:
     currentArticle - The article to render
 */
-import PropTypes from "prop-types";
 import styles from "../styles/Article.module.css";
 import ArticleShape from "./ArticleShape";
 
@@ -27,5 +26,5 @@ export default function Article({ currentArticle }) {
 }
 
 Article.propTypes = {
-  currentArticle: PropTypes.arrayOf(ArticleShape),
+  currentArticle: ArticleShape,
 };
