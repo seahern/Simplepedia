@@ -16,43 +16,61 @@
     complete - function to call on completion (required)
 */
 import PropTypes from "prop-types";
+import { useState } from "react";
 import ArticleShape from "./ArticleShape";
 // import styles from "../styles/Editor.module.css";
 
-// eslint-disable-next-line no-unused-vars
 export default function Editor({ currentArticle, complete }) {
-  const newObject = {
-    title: "",
-    contents: "",
-    edited: "",
-    id: 0,
-  };
+  const [newObject, setNewObject] = useState(
+    currentArticle
+      ? { ...currentArticle }
+      : {
+          title: "",
+          contents: "",
+          edited: "",
+          id: 0,
+        },
+  );
 
-  function save() {
-    newObject.edited = new Date(Date.now()).toISOString();
-    complete(newObject);
+  async function save() {
+    if (currentArticle?.id) {
+      newObject.edited = new Date(Date.now()).toISOString();
+      complete(newObject);
+    } else {
+      newObject.edited = new Date(Date.now()).toISOString();
+      complete(newObject);
+    }
   }
 
   function cancel() {
-    complete(" ");
+    complete();
   }
 
-  function setObjectTitle(objectTitle) {
-    newObject.title = objectTitle;
+  function setObjectTitle(event) {
+    const newTitle = event.target.value;
+    setNewObject({ ...newObject, title: newTitle });
   }
 
-  function setObjectContents(objectContent) {
-    newObject.content = objectContent;
+  function setObjectContents(event) {
+    const newContents = event.target.value;
+    setNewObject({ ...newObject, contents: newContents });
   }
 
   return (
     <div>
-      <input type="text" onChange={(event) => setObjectTitle(event)} />
-      <textarea>
-        <input onChange={(event) => setObjectContents(event)} />
-      </textarea>
+      <input
+        type="text"
+        onChange={(event) => setObjectTitle(event)}
+        value={newObject.title}
+      />
+      <textarea
+        type="text"
+        onChange={(event) => setObjectContents(event)}
+        value={newObject.contents}
+      />
       <button
         type="button"
+        disabled={newObject.title === ""}
         onClick={() => {
           save();
         }}

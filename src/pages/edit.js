@@ -16,27 +16,26 @@ export default function SimplepediaCreator({
   }
 
   function complete(object) {
-    const objectCheck = collection.find(
-      (article) => article.title === object.title,
-    );
-
-    if (objectCheck) {
+    if (arguments.length === 0) {
+      setCurrentArticle();
+    } else {
       const collection2 = [...collection];
 
-      const indexObject = collection2.findIndex(
-        (article) => article.title === object.title,
-      );
-      if (indexObject !== -1) {
-        collection2.splice(indexObject, object);
-      }
+      const newObject = {
+        title: "",
+        contents: "",
+        edited: "",
+        id: 0,
+      };
 
-      const newObject = object;
-
-      const finalMax = collection2.reduce(maxValue);
+      const finalMax = collection2.reduce(maxValue, 0);
       newObject.id = finalMax + 1;
+      newObject.title = object.title;
+      newObject.contents = object.contents;
+      newObject.edited = new Date(Date.now()).toISOString();
       collection2.push(newObject);
-      setCollection(collection2);
       setCurrentArticle(newObject);
+      setCollection(collection2);
     }
   }
 
@@ -52,5 +51,5 @@ export default function SimplepediaCreator({
 SimplepediaCreator.propTypes = {
   collection: PropTypes.arrayOf(ArticleShape),
   setCollection: PropTypes.func,
-  setCurrentArticle: ArticleShape,
+  setCurrentArticle: PropTypes.func,
 };

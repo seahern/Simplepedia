@@ -9,7 +9,7 @@
     setCurrentArticle - Function to call set current article displayed
     currentArticle - The article to render
 */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import SectionsView from "./SectionsView";
 import TitlesView from "./TitlesView";
@@ -18,7 +18,6 @@ import ArticleShape from "./ArticleShape";
 export default function IndexBar({
   collection,
   setCurrentArticle,
-  // eslint-disable-next-line no-unused-vars
   currentArticle,
 }) {
   const [currentSection, setCurrentSection] = useState(null);
@@ -42,6 +41,10 @@ export default function IndexBar({
   }
 
   const setCurrentSectionCaller2 = setCurrentSectionCaller;
+
+  useEffect(() => {
+    setCurrentSection(currentArticle);
+  }, [currentArticle]);
 
   return (
     <div>

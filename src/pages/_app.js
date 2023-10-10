@@ -16,9 +16,13 @@ function MainApp({ Component, pageProps }) {
   const { id } = router.query;
 
   function setCurrentArticle(object) {
-    const articleName = "/articles/" + object.id;
-    router.push(articleName);
-    setCurrentArticle2(object);
+    if (arguments.length === 0) {
+      router.back();
+    } else {
+      const articleName = "/articles/" + object.id;
+      router.push(articleName);
+      setCurrentArticle2(object);
+    }
   }
 
   const props = {
@@ -27,6 +31,7 @@ function MainApp({ Component, pageProps }) {
     setCollection,
     setCurrentArticle,
     currentArticle,
+    id,
   };
 
   return (
