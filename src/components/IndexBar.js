@@ -44,7 +44,7 @@ export default function IndexBar({
 
   useEffect(() => {
     if (currentArticle) {
-      setCurrentSection(currentArticle.title.charAt(0));
+      setCurrentSection(currentArticle.title.charAt(0).toUpperCase());
     }
   }, [currentArticle]);
 

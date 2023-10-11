@@ -60,16 +60,19 @@ export default function Editor({ currentArticle, complete }) {
     <div>
       <input
         type="text"
+        placeholder="Title must be set"
         onChange={(event) => setObjectTitle(event)}
         value={newObject.title}
       />
       <textarea
         type="text"
+        placeholder="Contents"
         onChange={(event) => setObjectContents(event)}
         value={newObject.contents}
       />
       <button
         type="button"
+        name="Save"
         disabled={newObject.title === ""}
         onClick={() => {
           save();
@@ -79,6 +82,7 @@ export default function Editor({ currentArticle, complete }) {
       </button>
       <button
         type="button"
+        name="Cancel"
         onClick={() => {
           cancel();
         }}
@@ -90,6 +94,6 @@ export default function Editor({ currentArticle, complete }) {
 }
 
 Editor.propTypes = {
-  complete: PropTypes.func,
+  complete: PropTypes.func.isRequired,
   currentArticle: ArticleShape,
 };

@@ -27,8 +27,6 @@ export default function SimplepediaCreator({
         const indexObject = collection2.findIndex(
           (article) => article.id === object.id,
         );
-        console.log(indexObject);
-        console.log(indexObject);
         if (indexObject !== -1) {
           collection2[indexObject] = object;
         }
@@ -69,5 +67,5 @@ SimplepediaCreator.propTypes = {
   setCollection: PropTypes.func,
   setCurrentArticle: PropTypes.func,
   currentArticle: ArticleShape,
-  id: PropTypes.string,
+  id: PropTypes.arrayOf(String),
 };

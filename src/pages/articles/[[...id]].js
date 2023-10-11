@@ -9,8 +9,15 @@ export default function Simplepedia({
   collection,
   setCurrentArticle,
   currentArticle,
+  id,
 }) {
   const router = useRouter();
+
+  const currentArticle2 = collection.find((article) => article.id === id);
+
+  if (currentArticle2 !== undefined) {
+    setCurrentArticle(currentArticle2);
+  }
 
   function setCurrentArticle2(object) {
     if (arguments.length === 0) {
@@ -56,4 +63,5 @@ Simplepedia.propTypes = {
   collection: PropTypes.arrayOf(ArticleShape).isRequired,
   setCurrentArticle: PropTypes.func,
   currentArticle: ArticleShape,
+  id: PropTypes.string,
 };

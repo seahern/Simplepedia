@@ -10,20 +10,25 @@ import { useRouter } from "next/router";
 
 function MainApp({ Component, pageProps }) {
   const [collection, setCollection] = useState(data);
-  const [currentArticle, setCurrentArticle2] = useState();
+  //const [currentArticle, setCurrentArticle2] = useState();
 
   const router = useRouter();
   const { id } = router.query;
 
-  function setCurrentArticle(object) {
+  const currentArticle = id
+    ? collection.find((article) => article.id === Number(id))
+    : undefined;
+
+  function setCurrentArticle(article) {
     if (arguments.length === 0) {
       router.back();
+    } else if (article === undefined) {
+      router.push("/articles/");
     } else {
-      if (object !== undefined) {
-        const articleName = "/articles/" + object.id;
-        router.push(articleName);
-        setCurrentArticle2(object);
-      }
+      const articleName = "/articles/" + article.id;
+      //setCurrentArticle2({...article});
+      console.log(currentArticle);
+      router.push(articleName);
     }
   }
 
