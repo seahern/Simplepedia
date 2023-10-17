@@ -12,28 +12,19 @@ import PropTypes from "prop-types";
 import ArticleShape from "./ArticleShape";
 
 export default function TitlesView({ articles, setCurrentArticle }) {
-  const collectionSorted = [...articles].sort((a, b) => {
-    const upperCaseA = a.title.toUpperCase();
-    const upperCaseB = b.title.toUpperCase();
+  const collectionSorted = [...articles].sort((a, b) =>
+    a.title.localeCompare(b.title),
+  );
 
-    if (upperCaseA < upperCaseB) {
-      return -1;
-    }
-    if (upperCaseA > upperCaseB) {
-      return 1;
-    }
-    return 0;
-  });
-
-  const listWithKey = collectionSorted.map((object) => (
+  const listWithKey = collectionSorted.map((article) => (
     <li
-      key={object.id}
+      key={article.id}
       data-testid="title"
       onClick={() => {
-        setCurrentArticle(object);
+        setCurrentArticle(article);
       }}
     >
-      {object.title}
+      {article.title}
     </li>
   ));
 

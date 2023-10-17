@@ -22,21 +22,19 @@ export default function IndexBar({
 }) {
   const [currentSection, setCurrentSection] = useState(null);
 
-  let sections = [];
-
-  sections = collection.map((object) => object.title.substring(0, 1));
-
-  const sections2 = [...new Set(sections)];
+  const sections2 = [
+    ...new Set(collection.map((object) => object.title.charAt(0))),
+  ];
 
   const filteredArticles = collection.filter((article) => {
-    if (article.title.substring(0, 1) === currentSection) {
-      return article;
+    if (article.title.charAt(0) === currentSection) {
+      return true;
     }
-    return null;
+    return false;
   });
 
   function setCurrentSectionCaller(object) {
-    setCurrentArticle(undefined);
+    setCurrentArticle();
     setCurrentSection(object);
   }
 

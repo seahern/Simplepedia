@@ -14,22 +14,22 @@ import styles from "../styles/SectionsView.module.css";
 export default function SectionsView({ sections, setCurrentSection }) {
   const sortedSections = [...sections].sort();
 
-  const sections1 = sortedSections.map((object) => (
+  const sectionsFinal = sortedSections.map((section) => (
     <li
-      key={object.charAt(0)}
+      key={section}
       data-testid="section"
       onClick={() => {
-        setCurrentSection(object);
+        setCurrentSection(section);
       }}
     >
-      {object}
+      {section}
     </li>
   ));
 
   return (
     <div className={styles.sectionList}>
       {" "}
-      <ul> {sections1} </ul>{" "}
+      <ul> {sectionsFinal} </ul>{" "}
     </div>
   );
 }

@@ -2,17 +2,12 @@ import PropTypes from "prop-types";
 import ArticleShape from "../../../components/ArticleShape";
 import Editor from "../../../components/Editor";
 
-export default function SimplepediaCreator({
+export default function SimplepediaEditor({
   collection,
   setCollection,
   setCurrentArticle,
   currentArticle,
-  id,
 }) {
-  const currentArticle2 = collection.find(
-    (article) => Number(article.id) === Number(id),
-  );
-
   function complete(object) {
     if (arguments.length === 0) {
       setCurrentArticle();
@@ -55,14 +50,14 @@ export default function SimplepediaCreator({
       <Editor
         setCurrentArticle={setCurrentArticle}
         complete={complete2}
-        currentArticle={currentArticle2}
+        currentArticle={currentArticle}
         key={currentArticle?.id}
       />
     </div>
   );
 }
 
-SimplepediaCreator.propTypes = {
+SimplepediaEditor.propTypes = {
   collection: PropTypes.arrayOf(ArticleShape),
   setCollection: PropTypes.func,
   setCurrentArticle: PropTypes.func,

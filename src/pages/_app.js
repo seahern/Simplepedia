@@ -26,8 +26,6 @@ function MainApp({ Component, pageProps }) {
       router.push("/articles/");
     } else {
       const articleName = "/articles/" + article.id;
-      //setCurrentArticle2({...article});
-      console.log(currentArticle);
       router.push(articleName);
     }
   }

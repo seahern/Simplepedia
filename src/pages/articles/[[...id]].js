@@ -9,25 +9,8 @@ export default function Simplepedia({
   collection,
   setCurrentArticle,
   currentArticle,
-  id,
 }) {
   const router = useRouter();
-
-  const currentArticle2 = collection.find((article) => article.id === id);
-
-  if (currentArticle2 !== undefined) {
-    setCurrentArticle(currentArticle2);
-  }
-
-  function setCurrentArticle2(object) {
-    if (arguments.length === 0) {
-      router.back();
-    } else {
-      setCurrentArticle(object);
-    }
-  }
-
-  const setCurrentArticle3 = setCurrentArticle2;
 
   function handleClick1(event) {
     if (event === "add") {
@@ -45,7 +28,7 @@ export default function Simplepedia({
     <div>
       <IndexBar
         collection={collection}
-        setCurrentArticle={setCurrentArticle3}
+        setCurrentArticle={setCurrentArticle}
         currentArticle={currentArticle}
       />
 
@@ -63,5 +46,5 @@ Simplepedia.propTypes = {
   collection: PropTypes.arrayOf(ArticleShape).isRequired,
   setCurrentArticle: PropTypes.func,
   currentArticle: ArticleShape,
-  id: PropTypes.string,
+  id: PropTypes.arrayOf(String),
 };
