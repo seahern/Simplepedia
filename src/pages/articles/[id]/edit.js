@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 import ArticleShape from "../../../components/ArticleShape";
 import Editor from "../../../components/Editor";
 
@@ -8,9 +9,11 @@ export default function SimplepediaEditor({
   setCurrentArticle,
   currentArticle,
 }) {
+  const router = useRouter();
+
   function complete(object) {
     if (arguments.length === 0) {
-      setCurrentArticle();
+      router.back();
     } else {
       const objectCheck = collection.find(
         (article) => article.id === object.id,

@@ -17,8 +17,7 @@ export default function Simplepedia({
       router.push("/edit");
     }
     if (event === "edit") {
-      const stringAddress = `/articles/${currentArticle.id}/edit`;
-      router.push(stringAddress);
+      router.push(`/articles/${currentArticle.id}/edit`);
     }
   }
 

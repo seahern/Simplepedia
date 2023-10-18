@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { useRouter } from "next/router";
 import ArticleShape from "../components/ArticleShape";
 import Editor from "../components/Editor";
 
@@ -7,6 +8,8 @@ export default function SimplepediaCreator({
   setCollection,
   setCurrentArticle,
 }) {
+  const router = useRouter();
+
   function maxValue(maxValueParameter, currentObject) {
     let foundMax = maxValueParameter;
     if (maxValueParameter < currentObject.id) {
@@ -17,7 +20,7 @@ export default function SimplepediaCreator({
 
   function complete(object) {
     if (arguments.length === 0) {
-      setCurrentArticle();
+      router.back();
     } else {
       const collection2 = [...collection];
 
