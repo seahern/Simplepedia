@@ -19,23 +19,13 @@ export default function SimplepediaCreator({
   }
 
   function complete(object) {
-    if (arguments.length === 0) {
+    if (object === undefined) {
       router.back();
     } else {
       const collection2 = [...collection];
 
-      const newObject = {
-        title: "",
-        contents: "",
-        edited: "",
-        id: 0,
-      };
-
       const finalMax = collection2.reduce(maxValue, 0);
-      newObject.id = finalMax + 1;
-      newObject.title = object.title;
-      newObject.contents = object.contents;
-      newObject.edited = new Date(Date.now()).toISOString();
+      const newObject = { ...object, id: finalMax + 1 };
       collection2.push(newObject);
       setCurrentArticle(newObject);
       setCollection(collection2);

@@ -12,7 +12,7 @@ export default function SimplepediaEditor({
   const router = useRouter();
 
   function complete(object) {
-    if (arguments.length === 0) {
+    if (object === undefined) {
       router.back();
     } else {
       const objectCheck = collection.find(
@@ -20,26 +20,11 @@ export default function SimplepediaEditor({
       );
 
       if (objectCheck) {
-        const collection2 = [...collection];
-
-        const indexObject = collection2.findIndex(
-          (article) => article.id === object.id,
+        const collection2 = collection.map((oldArticle) =>
+          oldArticle.id === object.id ? object : oldArticle,
         );
-        if (indexObject !== -1) {
-          collection2[indexObject] = object;
-        }
 
-        const newObject = {
-          title: "",
-          contents: "",
-          edited: "",
-          id: 0,
-        };
-
-        newObject.id = object.id;
-        newObject.title = object.title;
-        newObject.contents = object.contents;
-        newObject.edited = new Date(Date.now()).toISOString();
+        const newObject = { ...object };
         setCurrentArticle(newObject);
         setCollection(collection2);
       }
@@ -65,5 +50,4 @@ SimplepediaEditor.propTypes = {
   setCollection: PropTypes.func,
   setCurrentArticle: PropTypes.func,
   currentArticle: ArticleShape,
-  id: PropTypes.arrayOf(String),
 };

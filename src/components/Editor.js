@@ -18,42 +18,27 @@
 import PropTypes from "prop-types";
 import { useState } from "react";
 import ArticleShape from "./ArticleShape";
-// import styles from "../styles/Editor.module.css";
 
 export default function Editor({ currentArticle, complete }) {
-  const [newObject, setNewObject] = useState(
-    currentArticle
-      ? { ...currentArticle }
-      : {
-          title: "",
-          contents: "",
-          edited: "",
-          id: 0,
-        },
+  const [newTitle, setNewTitle] = useState(
+    currentArticle ? currentArticle.title : undefined,
+  );
+  const [newContents, setNewContents] = useState(
+    currentArticle ? currentArticle.contents : undefined,
   );
 
   async function save() {
-    if (currentArticle?.id) {
-      newObject.edited = new Date(Date.now()).toISOString();
-      complete(newObject);
-    } else {
-      newObject.edited = new Date(Date.now()).toISOString();
-      complete(newObject);
-    }
+    const newArticle = {
+      ...currentArticle,
+      title: newTitle,
+      contents: newContents,
+      edited: new Date(Date.now()).toISOString(),
+    };
+    complete(newArticle);
   }
 
   function cancel() {
     complete();
-  }
-
-  function setObjectTitle(event) {
-    const newTitle = event.target.value;
-    setNewObject({ ...newObject, title: newTitle });
-  }
-
-  function setObjectContents(event) {
-    const newContents = event.target.value;
-    setNewObject({ ...newObject, contents: newContents });
   }
 
   return (
@@ -61,19 +46,19 @@ export default function Editor({ currentArticle, complete }) {
       <input
         type="text"
         placeholder="Title must be set"
-        onChange={(event) => setObjectTitle(event)}
-        value={newObject.title}
+        onChange={(event) => setNewTitle(event.target.value)}
+        value={newTitle}
       />
       <textarea
         type="text"
         placeholder="Contents"
-        onChange={(event) => setObjectContents(event)}
-        value={newObject.contents}
+        onChange={(event) => setNewContents(event.target.value)}
+        value={newContents}
       />
       <button
         type="button"
         name="Save"
-        disabled={newObject.title === ""}
+        disabled={newTitle === undefined || newTitle === ""}
         onClick={() => {
           save();
         }}
