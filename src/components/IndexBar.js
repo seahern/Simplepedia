@@ -38,8 +38,6 @@ export default function IndexBar({
     setCurrentSection(object);
   }
 
-  const setCurrentSectionCaller2 = setCurrentSectionCaller;
-
   useEffect(() => {
     if (currentArticle) {
       setCurrentSection(currentArticle.title.charAt(0).toUpperCase());
@@ -50,7 +48,7 @@ export default function IndexBar({
     <div>
       <SectionsView
         sections={sections2}
-        setCurrentSection={setCurrentSectionCaller2}
+        setCurrentSection={(object) => setCurrentSectionCaller(object)}
       />
       <TitlesView
         articles={filteredArticles}

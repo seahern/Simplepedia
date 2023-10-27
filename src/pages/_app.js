@@ -20,7 +20,7 @@ function MainApp({ Component, pageProps }) {
     : undefined;
 
   function setCurrentArticle(article) {
-    if (article === undefined) {
+    if (!article) {
       router.back();
     } else {
       const articleName = "/articles/" + article.id;

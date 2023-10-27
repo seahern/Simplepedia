@@ -21,10 +21,10 @@ import ArticleShape from "./ArticleShape";
 
 export default function Editor({ currentArticle, complete }) {
   const [newTitle, setNewTitle] = useState(
-    currentArticle ? currentArticle.title : undefined,
+    currentArticle ? currentArticle.title : "",
   );
   const [newContents, setNewContents] = useState(
-    currentArticle ? currentArticle.contents : undefined,
+    currentArticle ? currentArticle.contents : "",
   );
 
   async function save() {
@@ -58,7 +58,7 @@ export default function Editor({ currentArticle, complete }) {
       <button
         type="button"
         name="Save"
-        disabled={newTitle === undefined || newTitle === ""}
+        disabled={newTitle === ""}
         onClick={() => {
           save();
         }}

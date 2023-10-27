@@ -19,7 +19,7 @@ export default function SimplepediaCreator({
   }
 
   function complete(object) {
-    if (object === undefined) {
+    if (!object) {
       router.back();
     } else {
       const collection2 = [...collection];
@@ -32,11 +32,12 @@ export default function SimplepediaCreator({
     }
   }
 
-  const complete2 = complete;
-
   return (
     <div>
-      <Editor setCurrentArticle={setCurrentArticle} complete={complete2} />
+      <Editor
+        setCurrentArticle={setCurrentArticle}
+        complete={(object) => complete(object)}
+      />
     </div>
   );
 }

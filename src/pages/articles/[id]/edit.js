@@ -12,7 +12,7 @@ export default function SimplepediaEditor({
   const router = useRouter();
 
   function complete(object) {
-    if (object === undefined) {
+    if (!object) {
       router.back();
     } else {
       const objectCheck = collection.find(
@@ -31,13 +31,11 @@ export default function SimplepediaEditor({
     }
   }
 
-  const complete2 = complete;
-
   return (
     <div>
       <Editor
         setCurrentArticle={setCurrentArticle}
-        complete={complete2}
+        complete={(object) => complete(object)}
         currentArticle={currentArticle}
         key={currentArticle?.id}
       />

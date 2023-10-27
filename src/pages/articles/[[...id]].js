@@ -12,7 +12,7 @@ export default function Simplepedia({
 }) {
   const router = useRouter();
 
-  function handleClick1(event) {
+  function handleClick(event) {
     if (event === "add") {
       router.push("/edit");
     }
@@ -20,8 +20,6 @@ export default function Simplepedia({
       router.push(`/articles/${currentArticle.id}/edit`);
     }
   }
-
-  const handleClick = handleClick1;
 
   return (
     <div>
@@ -34,7 +32,7 @@ export default function Simplepedia({
       {currentArticle && <Article currentArticle={currentArticle} />}
 
       <ButtonBar
-        handleClick={handleClick}
+        handleClick={(event) => handleClick(event)}
         allowEdit={currentArticle !== undefined || null}
       />
     </div>
