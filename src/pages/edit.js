@@ -18,16 +18,16 @@ export default function SimplepediaCreator({
     return foundMax;
   }
 
-  function complete(object) {
-    if (!object) {
+  function complete(article) {
+    if (!article) {
       router.back();
     } else {
       const collection2 = [...collection];
 
       const finalMax = collection2.reduce(maxValue, 0);
-      const newObject = { ...object, id: finalMax + 1 };
-      collection2.push(newObject);
-      setCurrentArticle(newObject);
+      const newArticle = { ...article, id: finalMax + 1 };
+      collection2.push(newArticle);
+      setCurrentArticle(newArticle);
       setCollection(collection2);
     }
   }
@@ -36,7 +36,7 @@ export default function SimplepediaCreator({
     <div>
       <Editor
         setCurrentArticle={setCurrentArticle}
-        complete={(object) => complete(object)}
+        complete={(article) => complete(article)}
       />
     </div>
   );

@@ -46,13 +46,13 @@ export default function Editor({ currentArticle, complete }) {
       <input
         type="text"
         placeholder="Title must be set"
-        onChange={(event) => setNewTitle(event.target.value)}
+        onChange={(text) => setNewTitle(text.target.value)}
         value={newTitle}
       />
       <textarea
         type="text"
         placeholder="Contents"
-        onChange={(event) => setNewContents(event.target.value)}
+        onChange={(text) => setNewContents(text.target.value)}
         value={newContents}
       />
       <button

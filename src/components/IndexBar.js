@@ -23,7 +23,7 @@ export default function IndexBar({
   const [currentSection, setCurrentSection] = useState(null);
 
   const sections2 = [
-    ...new Set(collection.map((object) => object.title.charAt(0))),
+    ...new Set(collection.map((article) => article.title.charAt(0))),
   ];
 
   const filteredArticles = collection.filter((article) => {
@@ -33,9 +33,9 @@ export default function IndexBar({
     return false;
   });
 
-  function setCurrentSectionCaller(object) {
+  function setCurrentSectionCaller(section) {
     setCurrentArticle();
-    setCurrentSection(object);
+    setCurrentSection(section);
   }
 
   useEffect(() => {
@@ -48,7 +48,7 @@ export default function IndexBar({
     <div>
       <SectionsView
         sections={sections2}
-        setCurrentSection={(object) => setCurrentSectionCaller(object)}
+        setCurrentSection={(section) => setCurrentSectionCaller(section)}
       />
       <TitlesView
         articles={filteredArticles}

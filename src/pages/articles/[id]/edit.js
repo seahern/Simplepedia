@@ -11,21 +11,21 @@ export default function SimplepediaEditor({
 }) {
   const router = useRouter();
 
-  function complete(object) {
-    if (!object) {
+  function complete(article) {
+    if (!article) {
       router.back();
     } else {
-      const objectCheck = collection.find(
-        (article) => article.id === object.id,
+      const articleCheck = collection.find(
+        (comparedArticle) => comparedArticle.id === article.id,
       );
 
-      if (objectCheck) {
+      if (articleCheck) {
         const collection2 = collection.map((oldArticle) =>
-          oldArticle.id === object.id ? object : oldArticle,
+          oldArticle.id === article.id ? article : oldArticle,
         );
 
-        const newObject = { ...object };
-        setCurrentArticle(newObject);
+        const newArticle = { ...article };
+        setCurrentArticle(newArticle);
         setCollection(collection2);
       }
     }
@@ -35,7 +35,7 @@ export default function SimplepediaEditor({
     <div>
       <Editor
         setCurrentArticle={setCurrentArticle}
-        complete={(object) => complete(object)}
+        complete={(article) => complete(article)}
         currentArticle={currentArticle}
         key={currentArticle?.id}
       />
