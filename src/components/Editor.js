@@ -17,6 +17,14 @@
 */
 import PropTypes from "prop-types";
 import { useState } from "react";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import TextField from "@mui/material/TextField";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Button from "@mui/material/Button";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import ButtonGroup from "@mui/material/ButtonGroup";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Stack from "@mui/material/Stack";
 import ArticleShape from "./ArticleShape";
 
 export default function Editor({ currentArticle, complete }) {
@@ -43,37 +51,35 @@ export default function Editor({ currentArticle, complete }) {
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Title must be set"
+      <TextField
+        required
+        fullWidth
+        margin="normal"
+        id="title"
+        label="Title"
         onChange={(text) => setNewTitle(text.target.value)}
         value={newTitle}
+        error={!newTitle}
+        helperText={!newTitle ? "Title can't be blank" : " "}
       />
-      <textarea
-        type="text"
-        placeholder="Contents"
+      <TextField
+        fullWidth
+        multiline
+        rows={10}
+        margin="normal"
+        id="contents"
+        label="Contents"
         onChange={(text) => setNewContents(text.target.value)}
         value={newContents}
       />
-      <button
-        type="button"
-        name="Save"
-        disabled={newTitle === ""}
-        onClick={() => {
-          save();
-        }}
-      >
-        Save
-      </button>
-      <button
-        type="button"
-        name="Cancel"
-        onClick={() => {
-          cancel();
-        }}
-      >
-        Cancel
-      </button>
+      <Stack spacing={2} direction="row">
+        <ButtonGroup variant="contained" sx={{ my: 2 }}>
+          <Button disabled={newTitle === ""} onClick={() => save()}>
+            Save
+          </Button>
+          <Button onClick={() => cancel()}>Cancel</Button>
+        </ButtonGroup>
+      </Stack>
     </div>
   );
 }

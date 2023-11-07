@@ -9,32 +9,43 @@
 
 */
 import PropTypes from "prop-types";
-import styles from "../styles/SectionsView.module.css";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import ToggleButton from "@mui/material/ToggleButton";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 
-export default function SectionsView({ sections, setCurrentSection }) {
+export default function SectionsView({
+  sections,
+  setCurrentSection,
+  currentSection,
+}) {
   const sortedSections = [...sections].sort();
 
-  const sectionsFinal = sortedSections.map((section) => (
-    <li
-      key={section}
-      data-testid="section"
-      onClick={() => {
-        setCurrentSection(section);
-      }}
-    >
+  const sectionItems = sortedSections.map((section) => (
+    <ToggleButton key={section} data-testid="section" value={section}>
       {section}
-    </li>
+    </ToggleButton>
   ));
 
+  const handleChange = (event, newSection) => {
+    setCurrentSection(newSection);
+  };
+
   return (
-    <div className={styles.sectionList}>
-      {" "}
-      <ul> {sectionsFinal} </ul>{" "}
-    </div>
+    <ToggleButtonGroup
+      color="primary"
+      exclusive
+      onChange={handleChange}
+      size="small"
+      value={currentSection}
+    >
+      {sectionItems}
+    </ToggleButtonGroup>
   );
 }
 
 SectionsView.propTypes = {
   sections: PropTypes.arrayOf(PropTypes.string),
   setCurrentSection: PropTypes.func,
+  currentSection: PropTypes.string,
 };

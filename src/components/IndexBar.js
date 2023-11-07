@@ -11,6 +11,10 @@
 */
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Grid from "@mui/material/Grid";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Box from "@mui/material/Box";
 import SectionsView from "./SectionsView";
 import TitlesView from "./TitlesView";
 import ArticleShape from "./ArticleShape";
@@ -19,6 +23,7 @@ export default function IndexBar({
   collection,
   setCurrentArticle,
   currentArticle,
+  children,
 }) {
   const [currentSection, setCurrentSection] = useState(null);
 
@@ -45,16 +50,27 @@ export default function IndexBar({
   }, [currentArticle]);
 
   return (
-    <div>
-      <SectionsView
-        sections={sections2}
-        setCurrentSection={(section) => setCurrentSectionCaller(section)}
-      />
-      <TitlesView
-        articles={filteredArticles}
-        setCurrentArticle={setCurrentArticle}
-      />
-    </div>
+    <Grid container spacing={2}>
+      <Grid item xs={12}>
+        <Box display="flex" justifyContent="center" alignItems="center">
+          <SectionsView
+            sections={sections2}
+            setCurrentSection={(section) => setCurrentSectionCaller(section)}
+            currentSection={currentSection}
+          />
+        </Box>
+      </Grid>
+      <Grid item xs={12} sm={6} md={3}>
+        <TitlesView
+          articles={filteredArticles}
+          setCurrentArticle={setCurrentArticle}
+        />
+      </Grid>
+      <Grid item xs={12} sm={6} md={9}>
+        {" "}
+        {children}{" "}
+      </Grid>
+    </Grid>
   );
 }
 
@@ -62,4 +78,5 @@ IndexBar.propTypes = {
   collection: PropTypes.arrayOf(ArticleShape),
   setCurrentArticle: PropTypes.func,
   currentArticle: ArticleShape,
+  children: PropTypes.node,
 };

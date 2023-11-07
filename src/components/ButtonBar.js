@@ -13,32 +13,17 @@
     handleClick - a function called when a button is clicked (required)
 */
 import PropTypes from "prop-types";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import Button from "@mui/material/Button";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import ButtonGroup from "@mui/material/ButtonGroup";
 
 export default function ButtonBar({ allowEdit, handleClick }) {
   return (
-    <div>
-      <button
-        type="button"
-        name="add"
-        onClick={() => {
-          handleClick("add");
-        }}
-      >
-        Add
-      </button>
-
-      {allowEdit && (
-        <button
-          type="button"
-          name="edit"
-          onClick={() => {
-            handleClick("edit");
-          }}
-        >
-          Edit
-        </button>
-      )}
-    </div>
+    <ButtonGroup variant="contained" sx={{ my: 2 }}>
+      <Button onClick={() => handleClick("add")}>Add</Button>
+      {allowEdit && <Button onClick={() => handleClick("edit")}>Edit</Button>}
+    </ButtonGroup>
   );
 }
 

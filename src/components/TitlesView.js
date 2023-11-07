@@ -9,14 +9,21 @@
 
 */
 import PropTypes from "prop-types";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { styled } from "@mui/material/styles";
 import ArticleShape from "./ArticleShape";
+
+const NoBulletList = styled("ul")(() => ({
+  listStyle: "none",
+  paddingLeft: 0,
+}));
 
 export default function TitlesView({ articles, setCurrentArticle }) {
   const collectionSorted = [...articles].sort((a, b) =>
     a.title.localeCompare(b.title),
   );
 
-  const listWithKey = collectionSorted.map((article) => (
+  const titleItems = collectionSorted.map((article) => (
     <li
       key={article.id}
       data-testid="title"
@@ -31,7 +38,7 @@ export default function TitlesView({ articles, setCurrentArticle }) {
   return (
     <div>
       {" "}
-      <ul> {listWithKey} </ul>{" "}
+      <NoBulletList>{titleItems}</NoBulletList>
     </div>
   );
 }

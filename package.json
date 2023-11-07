@@ -1,5 +1,5 @@
 {
-  "name": "assignment03",
+  "name": "practical-frameworks",
   "version": "0.1.0",
   "private": true,
   "author": "Siri Ahern <seahern@middlebury.edu>",
@@ -19,6 +19,11 @@
     "gradescope": "zip -r gradescope.zip setup.sh run_autograder assessment"
   },
   "dependencies": {
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/server": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.17",
     "next": "13.4.19",
     "prop-types": "^15.8.1",
     "react": "18.2.0",

@@ -23,18 +23,18 @@ export default function Simplepedia({
 
   return (
     <div>
-      <IndexBar
-        collection={collection}
-        setCurrentArticle={setCurrentArticle}
-        currentArticle={currentArticle}
-      />
-
-      {currentArticle && <Article currentArticle={currentArticle} />}
-
       <ButtonBar
         handleClick={(event) => handleClick(event)}
         allowEdit={currentArticle !== undefined || null}
       />
+
+      <IndexBar
+        collection={collection}
+        setCurrentArticle={setCurrentArticle}
+        currentArticle={currentArticle}
+      >
+        {currentArticle && <Article currentArticle={currentArticle} />}
+      </IndexBar>
     </div>
   );
 }

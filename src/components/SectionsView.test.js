@@ -50,9 +50,9 @@ describe("SectionsView tests", () => {
     sortedSections.sort((t1, t2) => t1.localeCompare(t2));
 
     const items = await screen.getAllByTestId("section");
-    const displayedSections = items.map((item) => item.innerHTML);
-
-    expect(displayedSections).toEqual(sortedSections);
+    sortedSections.forEach((section, i) =>
+      expect(items[i]).toHaveTextContent(new RegExp(`^${section}`)),
+    );
   });
 
   test("Props are not mutated", () => {
