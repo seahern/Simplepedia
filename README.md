@@ -1,2 +1,1 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/1OOsoAXW)
-# Assignment 3
+Simplepedia is a simplified version of Wikipedia where a user can read snippets about different topics and edit already existing topics or create new topics.
